@@ -1,0 +1,1 @@
+# definisikan variable untuk mengakses database
