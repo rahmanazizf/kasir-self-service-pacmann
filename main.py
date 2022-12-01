@@ -1,41 +1,26 @@
 from tabulate import tabulate
 import numpy as np
+from transaction import Transaction
 
-class Transaction:
+tsx123 = Transaction()
 
-    def __init__(self):
-        self.nama_item = []
-        self.jumlah_item = []
-        self.harga_per_item = []
+print("=== Self-Service Cashier ===")
+print("Selamat datang di Self-Service Cashier")
 
-    def add_item(self):
-        nama_item = input("Masukkan nama item: ")
-        jumlah_item = input("Masukkan jumlah item: ")
-        harga_per_item = input("Masukkan harga per item: ")
+def menu():
+    print("Silakan ketikkan angka pada menu berikut\n")
+    print('''
+    1. Tambahkan item belanja
+    2. Ubah nama item terdaftar
+    3. Ubah harga item terdaftar
+    4. Hapus item terdaftar
+    5. Hapus seluruh transaksi
+    6. Cek pesanan
+    7. Harga total
+    ''')
+    cmd_number = int(input("Perintah Anda: "))
 
-        try:
-            self.nama_item = str(nama_item)
+    return cmd_number
 
-            if int(jumlah_item) | int(harga_per_item) > 0:
-                self.jumlah_item.append(int(jumlah_item))
-                self.harga_per_item.append(int(harga_per_item))
-            else:
-                raise ValueError("Jumlah item/harga per item harus lebih dari 0")
+cmd_trx = {1: tsx123.add_item, 2: tsx123.update_item_name, 3: tsx123.update_item_price}
 
-        except:
-            raise TypeError("Data yang Anda Masukkan tidak valid.")
-    
-    def hitung_harga_total(self):
-        try:
-            return self.jumlah_item * self.harga_per_item
-        except:
-            raise ValueError("Item yang Anda maksud tidak terdaftar")
-            
-        
-
-
-tsc12 = Transaction()
-tsc12.add_item()
-
-# print(tsc12.harga_per_item)
-# print(tsc12.nama_item)
