@@ -3,7 +3,8 @@ from tabulate import tabulate
 class Transaction:
 
     def __init__(self):
-        self.item = {'Nama Item': [], 'Jumlah': [], 'Harga per Item': []}
+        self.item = {'Nama Item': [], 'Jumlah': [], 'Harga per Item': [], 
+                    "Harga": []}
 
     def add_item(self):
         try:
@@ -15,6 +16,7 @@ class Transaction:
             self.item['Nama Item'].append(nama_item)
             self.item['Jumlah'].append(jumlah_item)
             self.item['Harga per Item'].append(harga_per_item)
+            self.item['Harga'].append(jumlah_item * harga_per_item)
 
         except Exception as exc:
             raise ValueError("Data yang Anda masukkan tidak valid") from exc
@@ -30,6 +32,7 @@ class Transaction:
             self.item['Nama Item'][idx] = nama_item_updated
         else:
             print('Data yang Anda maksud tidak tersedia')
+            Transaction.update_item_name(self)
 
 
     def update_item_price(self):
@@ -39,8 +42,9 @@ class Transaction:
         harga_per_item_updated = float(input("Masukkan harga item baru: "))
 
         if nama_item in self.item['Nama Item']:
-            idx = self['Nama Item'].index(nama_item)
+            idx = self.item['Nama Item'].index(nama_item)
             self.item['Harga per Item'][idx] = harga_per_item_updated
+            self.item['Harga'][idx] = harga_per_item_updated * self.item['Jumlah'][idx]
         else:
             print("Data yang Anda maksud tidak tersedia")
 
@@ -61,18 +65,14 @@ class Transaction:
 
     def reset_transaction(self):
         print("Menghapus seluruh transaksi belanja")
-        self.item.clear()
+        for data in self.item.values():
+            del data[:]
         print("Semua transaksi telah dihapus")
+        print(tabulate(self.item, headers='keys', tablefmt='github'))
 
-
-    def check_order(self):
-        pass
 
     def total_price(self):
-        total = 0
-
-        for n_item, price in zip(self.item['Jumlah'], self.item['Harga per Item']):
-            total += n_item * price
+        total = sum(self.item['Harga'])
         
         if total > 400_000:
             total = total * (1 - 0.1)
@@ -83,6 +83,20 @@ class Transaction:
         
         print(f"Harga total: {total}")
                     
+    def check_order(self):
+        # untuk mengecek data jml item dan harga item valid atau tidak
+        # dilakukan operasi matematika, misal: penjumlahan
+        try:
+            total_jml_item = sum(self.item['Jumlah'])
+            total_harga = sum(self.item['Harga'])
+
+            print(tabulate(self.item, headers='keys', tablefmt="github"))
+            print(f"Total jumlah item: {total_jml_item}")
+            print(f"Total harga: {total_harga}")
+            print("Data yang Anda masukkan sudah benar")
+
+        except Exception as exc:
+            raise ValueError("Terdapat kesalahan input data") from exc
 
 # tsx_123 = Transaction()
 
