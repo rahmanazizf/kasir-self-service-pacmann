@@ -8,8 +8,7 @@ cmd_trx = {1: tsx123.add_item, 2: tsx123.update_item_name,
             5: tsx123.reset_transaction, 
             6: tsx123.check_order, 7: tsx123.total_price, 8: quit}
 
-print("=== Self-Service Cashier ===")
-print("Selamat datang di Self-Service Cashier Pacmann")
+print('{:*^50}'.format('Self-Service Pac-Cashier'))
 
 def menu():
     print("\n")
