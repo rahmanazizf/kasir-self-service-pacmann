@@ -4,8 +4,8 @@ from money import Money
 
 class Transaction:
     '''
+    Class containing methods to process a transaction.
     '''
-
     def __init__(self):
         self.item = {'Nama Item': [], 'Jumlah': [], 'Harga per Item': [],
                      "Harga": []}
@@ -14,7 +14,7 @@ class Transaction:
         '''
         Adding an item into the order list.
         Params: None
-        Inputs:\n 
+        Inputs:
             Item name (str)
             Number of item to buy (int)
             Price per item (Money)
@@ -32,16 +32,15 @@ class Transaction:
             self.item['Harga per Item'].append(harga_per_item)
             self.item['Harga'].append(harga_per_item * jumlah_item)
 
-            print('**Pesanan berhasil ditambahkan!**')
+            print('***Pesanan berhasil ditambahkan!***')
         except ValueError:
             print("Data yang Anda masukkan tidak valid.")
-            self.add_item()
 
     def update_item_name(self):
         '''
         Updating an existing item name in the order list.
         Params: None
-        Inputs:\n
+        Inputs:
             Existing item name (str)
             New item name (str)
         Return: None
@@ -54,10 +53,9 @@ class Transaction:
         if nama_item in self.item['Nama Item']:
             idx = self.item['Nama Item'].index(nama_item)
             self.item['Nama Item'][idx] = nama_item_updated
+            print("*** Nama item telah diperbarui! ***")
         else:
-            print('Data yang Anda maksud tidak tersedia')
-            Transaction.update_item_name(self)
-            self.update_item_name()
+            print('!!! Item yang Anda maksud tidak tersedia !!!')
 
     def update_item_price(self):
         '''
@@ -74,13 +72,58 @@ class Transaction:
         harga_per_item_updated = Money(
             input("Masukkan harga item baru: "), 'IDR')
 
-        if nama_item in self.item['Nama Item']:
-            idx = self.item['Nama Item'].index(nama_item)
-            self.item['Harga per Item'][idx] = harga_per_item_updated
-            self.item['Harga'][idx] = harga_per_item_updated * \
+        try:
+            if nama_item in self.item['Nama Item']:
+                idx = self.item['Nama Item'].index(nama_item)
+                self.item['Jumlah'][idx] = harga_per_item_updated
+                self.item['Harga'][idx] = harga_per_item_updated * \
                 self.item['Jumlah'][idx]
-        else:
-            print("Data yang Anda maksud tidak tersedia")
+                print("*** Harga item telah diperbarui! ***")
+            else:
+                print("!!! Item yang Anda maksud tidak tersedia !!!")
+                print(30*'=')
+        
+        except TypeError:
+            # handle kasus jika variable nama_item berisi empty string
+            print("!!! Terdapat kesalahan dalam input data !!!")
+            print(30*'=')
+        
+        finally:
+            self.update_item_price()
+
+
+    def update_item_qty(self):
+        '''
+        Updating an existing item quantity in the order list.
+        Params: None
+        Inputs:
+            Item name (str)
+            Item quantity updated (int)
+        Return: None
+        '''
+        print("Mengubah jumlah item")
+
+        nama_item = input("Masukkan nama item: ")
+        jumlah_item_updated = int(input("Masukkan jumlah item baru: "))
+
+        try:
+            if nama_item in self.item['Nama Item']:
+                idx = self.item['Nama Item'].index(nama_item)
+                self.item['Jumlah'][idx] = jumlah_item_updated
+                self.item['Harga'][idx] = jumlah_item_updated * \
+                self.item['Harga per Item'][idx]
+                print("*** Jumlah item telah diperbarui! ***")
+            else:
+                print("!!! Item yang Anda maksud tidak tersedia !!!")
+                print(30*'=')
+        
+        except TypeError:
+            # handle kasus jika variable nama_item berisi empty string
+            print("!!! Terdapat kesalahan dalam input data !!!")
+            print(30*'=')
+        
+        finally:
+            self.update_item_price()
 
     def delete_item(self):
         '''
@@ -97,14 +140,16 @@ class Transaction:
         if nama_item in self.item['Nama Item']:
             idx = self.item['Nama Item'].index(nama_item)
 
-            removed_element = [data[idx] for data in self.item.values()]
-            headers = [header for header in self.item.keys()]
+            removed_element = [[data[idx] for data in self.item.values()]]
+            headers = list(self.item)
             print(tabulate(removed_element, headers=headers, tablefmt='github'))
 
-            answer = input("Data berikut akan dihapus. Lanjutkan? Y/N\n")
+            answer = input("Data tersebut akan dihapus. Lanjutkan? Y/N\n")
             if answer in ('Y', 'y'):
                 for data in self.item.values():
                     data.pop(idx)
+
+                print(f'*** Item {nama_item} berhasil dihapus! ***')
 
     def reset_transaction(self):
         '''
@@ -116,7 +161,7 @@ class Transaction:
             for data in self.item.values():
                 del data[:]
 
-            print("Semua transaksi telah dihapus")
+            print("*** Semua transaksi telah dihapus ***")
             print(tabulate(self.item, headers='keys', tablefmt='github'))
 
     def total_price(self):
@@ -133,21 +178,18 @@ class Transaction:
         elif total > 200_000:
             total = total * (1 - 0.05)
 
-        print(f"Harga total: {total}")
+        print(f"==== Harga total: {total} ====")
 
     def check_order(self):
-        # TODO: gimana cara implementasi fungsi ini
         '''
-        <enaknya diisi apa ya?>
+        Checking if there is empty string in item name and 
+        displaying existing items in order list.
+        Return: None
         '''
         try:
-            total_jml_item = sum(self.item['Jumlah'])
-            total_harga = sum(self.item['Harga'])
-
+            assert('' not in self.item['Nama Item'])
             print(tabulate(self.item, headers='keys', tablefmt="github"))
-            print(f"Total jumlah item: {total_jml_item}")
-            print(f"Total harga: {total_harga}")
             print("Data yang Anda masukkan sudah benar")
 
-        except Exception as exc:
-            raise ValueError("Terdapat kesalahan input data") from exc
+        except AssertionError:
+            print("!!! Nama item tidak boleh kosong !!!")

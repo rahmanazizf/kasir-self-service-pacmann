@@ -1,18 +1,17 @@
-from tabulate import tabulate
-import numpy as np
 from transaction import Transaction
 
 tsx123 = Transaction()
-cmd_trx = {1: tsx123.add_item, 
-            2: tsx123.update_item_name,
-            3: tsx123.update_item_price, 
-            4: tsx123.delete_item, 
-            5: tsx123.reset_transaction, 
-            6: tsx123.check_order, 
-            7: tsx123.total_price, 
-            8: quit}
+cmd_trx = {1: tsx123.add_item,
+           2: tsx123.update_item_name,
+           3: tsx123.update_item_price,
+           4: tsx123.delete_item,
+           5: tsx123.reset_transaction,
+           6: tsx123.check_order,
+           7: tsx123.total_price,
+           8: quit}
 
 print('{:*^50}'.format('Self-Service Pac-Cashier'))
+
 
 def menu():
     '''
@@ -45,5 +44,6 @@ def menu():
 
     # panggil menu terus menerus sampai user menginput nomor 8
     menu()
+
 
 menu()
