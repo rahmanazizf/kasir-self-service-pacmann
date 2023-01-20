@@ -13,5 +13,6 @@ Paket-paket yang diperlukan untuk menjalankan program sudah disertakan dalam fil
 python -m pip install -r req.txt
 ```
 lalu jalankan program dengan perintah 
-```python main.py
+```
+python main.py
 ```
