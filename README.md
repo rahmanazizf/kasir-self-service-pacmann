@@ -8,7 +8,5 @@ Membuat sistem kasir sederhana dengan yang dapat mengeksekusi tugas-tugas sebaga
   - menghapus salah satu atau semua barang yang terdapat dalam daftar belanja
   - mengecek kembali daftar belanja yang telah dimasukkan
 # Requirements
-Paket-paket yang diperlukan untuk menjalankan program sudah disertakan dalam file req.txt. Pengguna hanya perlu mengetikkan perintah berikut pada terminal.\n
-```python -m pip install -r req.txt```\n
-Lalu jalankan program dengan perintah\n
-```python main.py```
+Paket-paket yang diperlukan untuk menjalankan program sudah disertakan dalam file req.txt. Pengguna hanya perlu mengetikkan perintah berikut pada terminal:
+```python -m pip install -r req.txt```, lalu jalankan program dengan perintah ```python main.py```
