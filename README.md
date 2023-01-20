@@ -9,4 +9,9 @@ Membuat sistem kasir sederhana dengan yang dapat mengeksekusi tugas-tugas sebaga
   - mengecek kembali daftar belanja yang telah dimasukkan
 # Requirements
 Paket-paket yang diperlukan untuk menjalankan program sudah disertakan dalam file req.txt. Pengguna hanya perlu mengetikkan perintah berikut pada terminal:
-```python -m pip install -r req.txt```, lalu jalankan program dengan perintah ```python main.py```
+```
+python -m pip install -r req.txt
+```
+lalu jalankan program dengan perintah 
+```python main.py
+```
