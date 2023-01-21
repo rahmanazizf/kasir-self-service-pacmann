@@ -21,4 +21,4 @@ Di dalam class Transaction terdapat beberapa fungsi yang dapat menjalankan tugas
 1. **Fungsi add_item**
   Fungsi ```add_item``` menambahkan item yang diinput oleh user ke dalam daftar pesanan. Fungsi ini dijalankan dengan memasukkan pilihan menu nomor 1 pada tampilan utama.
   
-  ![2023-01-21 (1)](https://user-images.githubusercontent.com/100136072/213847715-e7791995-d311-4e33-a7aa-b5c0a2ed9d1f.png "Fungsi add_item")
+      ![2023-01-21 (1)](https://user-images.githubusercontent.com/100136072/213847715-e7791995-d311-4e33-a7aa-b5c0a2ed9d1f.png "Fungsi add_item")
