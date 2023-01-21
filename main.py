@@ -10,8 +10,9 @@ cmd_trx = {1: tsx123.add_item,
            7: tsx123.total_price,
            8: quit}
 
-print('{:*^50}'.format('Self-Service Pac-Cashier'))
-
+print("="*28)
+print('Self-Service Pac-Cashier')
+print("="*28)
 
 def menu():
     '''
@@ -20,7 +21,7 @@ def menu():
     Input: Choice of action to perform (int)
     Return: None
     '''
-    print("="*28)
+    # print("="*28)
     print("Silakan ketikkan angka pada menu berikut.")
     print('''
     1. Tambahkan item belanja
