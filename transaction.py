@@ -1,5 +1,6 @@
 from tabulate import tabulate
 from money import Money
+from decimal import Decimal
 
 
 class Transaction:
@@ -171,14 +172,17 @@ class Transaction:
         '''
         total = sum(self.item['Harga'])
 
-        if total > 400_000:
-            total = total * (1 - 0.1)
-        elif total > 300_000:
-            total = total * (1 - 0.08)
-        elif total > 200_000:
-            total = total * (1 - 0.05)
+        if total > Money(400000, 'IDR'):
+            total = total * Decimal(1 - 0.1)
+        elif total > Money(300000, 'IDR'):
+            total = total * Decimal(1 - 0.08)
+        elif total > Money(200000, 'IDR'):
+            total = total * Decimal(1 - 0.05)
 
-        print(f"==== Harga total: {total} ====")
+        print(f'''
+        ========================= 
+        Harga total: {total} 
+        =========================''')
 
     def check_order(self):
         '''
