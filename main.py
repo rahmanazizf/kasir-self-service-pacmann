@@ -36,15 +36,13 @@ def menu():
 
     try:
         cmd_number = int(input("Perintah Anda: "))
-    except ValueError:
+        cmd_trx[cmd_number]()
+    except (ValueError, KeyError):
         # jika perintah yang dimasukkan bukan integer maka tampilkan pesan dan kembali ke menu
         print("Perintah yang Anda masukkan tidak valid")
         menu()
 
-    cmd_trx[cmd_number]()
-
     # panggil menu terus menerus sampai user menginput nomor 8
     menu()
-
 
 menu()
