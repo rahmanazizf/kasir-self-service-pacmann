@@ -34,6 +34,9 @@ Di dalam class Transaction terdapat beberapa fungsi yang dapat menjalankan tugas
  
  8. Fungsi ```total_price()``` menghitung total harga dari seluruh item dalam daftar pesanan.
 
+# Diagram Alir Cara Kerja Program
+![image](https://user-images.githubusercontent.com/100136072/213872770-11194034-b2aa-4ae0-9ae5-3c89a09ad2f7.png "Diagram alir cara kerja program")
+
 # Test Cases
 ## 1. Menambahkan pesanan dengan fungsi add_item()
 Item yang ditambahkan: Ayam Goreng (2) dengan harga Rp 20.000 dan Pasta Gigi (2) dengan harga Rp 15.000
