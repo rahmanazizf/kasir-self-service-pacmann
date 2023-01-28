@@ -172,7 +172,7 @@ class Transaction:
         Return: None
         '''
         total = sum(self.item['Harga'])
-        prc_discs = [[400000, 0.1], [300000, 0.08], [200000, 0.05]]
+        prc_discs = ((400000, 0.1), (300000, 0.08), (200000, 0.05))
         
         for prc in prc_discs:
             disc = prc[1] if total > Money(prc[0], 'IDR') else 0.0
