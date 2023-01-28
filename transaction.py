@@ -1,6 +1,7 @@
 from tabulate import tabulate
 from money import Money
 from decimal import Decimal
+import sys
 
 
 class Transaction:
@@ -171,17 +172,18 @@ class Transaction:
         Return: None
         '''
         total = sum(self.item['Harga'])
+        prc_discs = [[400000, 0.1], [300000, 0.08], [200000, 0.05]]
+        
+        for prc in prc_discs:
+            disc = prc[1] if total > Money(prc[0], 'IDR') else 0.0
+            if disc: 
+                break
 
-        if total > Money(400000, 'IDR'):
-            total = total * Decimal(1 - 0.1)
-        elif total > Money(300000, 'IDR'):
-            total = total * Decimal(1 - 0.08)
-        elif total > Money(200000, 'IDR'):
-            total = total * Decimal(1 - 0.05)
+        total_disc = total * Decimal(1 - disc)
 
         print(f'''
         ========================= 
-        Harga total: {total} 
+        Harga total: {total_disc} 
         =========================''')
 
     def check_order(self):
@@ -197,3 +199,9 @@ class Transaction:
 
         except AssertionError:
             print("!!! Nama item tidak boleh kosong !!!")
+    
+    def exit(self):
+        '''
+        Exiting the program
+        '''
+        sys.exit()

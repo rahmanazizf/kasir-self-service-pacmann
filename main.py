@@ -1,14 +1,14 @@
 from transaction import Transaction
 
 tsx123 = Transaction()
-cmd_trx = {1: tsx123.add_item,
-           2: tsx123.update_item_name,
-           3: tsx123.update_item_price,
-           4: tsx123.delete_item,
-           5: tsx123.reset_transaction,
-           6: tsx123.check_order,
-           7: tsx123.total_price,
-           8: quit}
+cmd_trx = {1: 'add_item',
+           2: 'update_item_name',
+           3: 'update_item_price',
+           4: 'delete_item',
+           5: 'reset_transaction',
+           6: 'check_order',
+           7: 'total_price',
+           8: 'exit'}
 
 print("="*28)
 print('Self-Service Pac-Cashier')
@@ -36,7 +36,7 @@ def menu():
 
     try:
         cmd_number = int(input("Perintah Anda: "))
-        cmd_trx[cmd_number]()
+        getattr(tsx123, cmd_trx[cmd_number])()
     except (ValueError, KeyError):
         # jika perintah yang dimasukkan bukan integer maka tampilkan pesan dan kembali ke menu
         print("Perintah yang Anda masukkan tidak valid")
